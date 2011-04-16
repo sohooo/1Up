@@ -42,7 +42,7 @@ class OneUp
     puts "copied url " + url
 
     growl = "/usr/local/bin/growlnotify"
-    system(growl, "-v")
+    %x[#{growl} -v]
     if $?.exitstatus == 0
       notify growl, url
     end
@@ -50,7 +50,8 @@ class OneUp
 
   def notify(growl, url)
     puts "sending growl notification"
-    system("#{growl} -H localhost --image icon.png -n 1Up -m '1Upped to #{url}'")
+    icon = File.expand_path("../icon.png", __FILE__)
+    %x[#{growl} -H localhost --image #{icon} -n 1Up -m '1Upped to #{url}']
   end
 
   def backup(file)
