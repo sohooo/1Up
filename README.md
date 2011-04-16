@@ -13,6 +13,7 @@ This little script helps you share your pictures by doing the following:
 * send growl notification
 * backup original image
 
+
 # Enhancements
 The scripts works fine in standalone mode, but for there are some helful tools
 for additional pleasure:
@@ -20,4 +21,8 @@ for additional pleasure:
 1. `growlnotify` utility for nice growl notifications
 2. a Hazel job which watches the imagebox and automatically starts the script
 
+
+# Improvements
+
+* osx service
 
