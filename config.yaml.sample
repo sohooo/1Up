@@ -1,0 +1,4 @@
+oneup:
+  source: "/path/to/dropfolder"
+  host: "ssh-user@host"
+  path: "remote-dir"
