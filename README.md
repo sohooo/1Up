@@ -31,10 +31,10 @@ any place Services are available (Finder, iPhoto, ...).
 
 ## Use with Quicksilver
 
-This handy script really shines in combination with [Quicksilver](http://qsapp.com/)
+I use the script in combination with [Quicksilver](http://qsapp.com/)
 and its [Services Menu Module](http://qsapp.com/plugins/), which converts
-services to Quicksilver actions. Now, you can load an image (get current selection),
-hit TAB, and choose the 1Up service you defined earlier. Sweet.
+services to Quicksilver actions. Now, I can load an image (get current selection),
+hit TAB, and choose the 1Up service we defined earlier. Sweet.
 
 
 # TODO
