@@ -8,24 +8,17 @@ CONFIG = YAML::load(File.read(CONFIG_FILE))
 
 class OneUp
 
-  def initialize
-    @imagebox = Pathname.new(CONFIG["oneup"]["source"])
+  def initialize(image)
+    @original = Pathname.new image
     @host     = CONFIG["oneup"]["host"]
     @path     = CONFIG["oneup"]["path"]
     @dest     = "#{@host}:#{@path}"
-    @original = get_image
-  end
-
-  def get_image
-    @imagebox.children.each do |entry|
-      next unless entry.file?
-      return Pathname.new entry
-    end
   end
 
   def convert(img)
     puts "converting " + img
-    system("mogrify -resize x800 -strip #{img}")
+    mogrify = "/usr/local/bin/mogrify"
+    system("#{mogrify} -resize x800 -strip #{img}")
   end
   
   def upload(img)
@@ -52,11 +45,9 @@ class OneUp
     puts "sending growl notification"
     icon = File.expand_path("../icon.png", __FILE__)
     %x[#{growl} -H localhost --image #{icon} -n 1Up -m '1Upped to #{url}']
-  end
 
-  def backup(file)
-    puts "backup file to #{@imagebox + 'backup'}"
-    FileUtils.mv file, @imagebox + "backup"
+    sound = File.expand_path("../sound.caf", __FILE__)
+    %x[afplay #{sound}]
   end
 
   def in_tempdir
@@ -76,11 +67,10 @@ class OneUp
     end
 
       copy_url
-      backup @original
       puts "1Upped!"
   end
 
 end
 
-image = OneUp.new
+image = OneUp.new ARGV[0]
 image.upit!

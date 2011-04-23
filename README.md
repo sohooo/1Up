@@ -5,24 +5,31 @@ by: Sven Sporer
 
 This little script helps you share your pictures by doing the following:
 
-* take image from imagebox (a folder you specify)
+* create tmpfile of specified image
 * convert to max. 800px dimensions
 * strip profiles/EXIF data
-* upload image to remote dir via ssh (create config.yaml)
+* upload image to remote dir via ssh (create config.yaml; see sample)
 * copy url to clipboard
-* send growl notification
-* backup original image
+* send growl and sound notification
 
 
-# Enhancements
-The scripts works fine in standalone mode, but for there are some helful tools
-for additional pleasure:
+# Usage
+The scripts works fine if you call it from commandline, but really shines
+if you define it as a Service for image files. This way you can start it from
+any place Services are available (Finder, iPhoto, ...).
 
-1. `growlnotify` utility for nice growl notifications
-2. a Hazel job which watches the imagebox and automatically starts the script
+## Define Service
 
+* start Automator > create a Service
+* Service receives Images from any program
+* add the module to execute a shell script
+* shell script text: `/Users/sven/scripts/1up/1up.rb "$@"`
 
-# Improvements
+## Use with Quicksilver
+This handy script really shines in combination with [Quicksilver](http://qsapp.com/)
+and its [Services Menu Module](http://qsapp.com/plugins/), which converts
+services to Quicksilver actions. Now, you can load an image (get current selection),
+hit TAB, and choose the 1Up service you defined earlier. Sweet.
 
-* osx service
-
+# TODO
+Post with images to explain usage.
